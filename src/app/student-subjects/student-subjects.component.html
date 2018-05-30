@@ -1,0 +1,31 @@
+<div>
+  <h4>Spisak predmeta</h4>
+  <ul class="subjects">
+    <li *ngFor="let subject of subjects"
+    [class.selected]="subject === selectedSubject"
+    (click)="onSelect(subject)"
+    (click)="getGradesBySubjectAndStudent()">
+      <span class="badge">{{subject.id}}</span> {{subject.name}}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="selectedSubject">
+<table id="t01">
+  <caption>Pregled ocena</caption>
+<tr>
+   <th>Ocena</th>
+   <th>Tip ocene</th>
+   <th>Polugodište</th>
+ </tr>
+ <tr *ngFor="let grade of grades">
+   <td>{{grade.value}}</td>
+   <td>{{grade.type}}</td>
+   <td>{{grade.semester}}</td>
+ </tr>
+</table>
+</div><br/>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

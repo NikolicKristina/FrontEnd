@@ -1,0 +1,14 @@
+<div id="search-component">
+  <h4>Pronađi roditelja</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="JMBG roditelja" />
+
+  <ul class="search-result">
+    <li *ngFor="let parent of parents$ | async">
+      <a routerLink="/parent/{{parent.id}}">
+        {{parent.firstName}} {{parent.lastName}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div>

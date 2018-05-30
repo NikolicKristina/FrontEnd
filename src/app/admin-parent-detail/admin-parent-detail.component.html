@@ -1,0 +1,70 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="parent">
+  <h2>Odabrali ste roditelja: </h2>
+  <div class = "students">
+    <span class="badge">{{parent.id}}</span>{{parent.firstName}} {{parent.lastName}}
+    <button class="delete" (click)="deleteParent(parent)">Obriši roditelja</button>
+  </div>
+  <div>
+    <label>Ime:
+      <input [(ngModel)] = "parent.firstName" >
+    </label>
+  </div>
+  <div>
+    <label>Prezime:
+      <input [(ngModel)] = "parent.lastName" >
+    </label>
+  </div>
+  <div>
+    <label>email:
+      <input [(ngModel)] = "parent.email" type="email">
+    </label>
+  </div>
+  <div>
+    <label>JMBG:
+      <input [(ngModel)] = "parent.jmbg" >
+    </label>
+  </div>
+  <div>
+    <label>Adresa:
+      <input [(ngModel)] = "parent.address" >
+    </label>
+  </div>
+  <div>
+    <label>Tip korisnika:
+      <input [(ngModel)] = "parent.title" >
+    </label>
+  </div>
+  <div>
+    <label>Datum rodjenja:
+      <input [(ngModel)] = "parent.dateOfBirth" >
+    </label>
+  </div>
+  <div >
+    <button (click)="save()" class="btn btn-primary">Sačuvaj</button>
+  </div>
+</div>
+<div id="search-component">
+  <h4>Pronađi učenika za dodelu roditelju</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="JMBG učenika" />
+
+  <ul class="search-result">
+    <li *ngFor="let student of students$ | async" >
+      <a routerLink="/admin/parent/{{parentId}}/{{student.id}}">
+        {{student.id}} {{student.firstName}} {{student.lastName}}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

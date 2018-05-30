@@ -1,0 +1,45 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="subject">
+  <h2>Odabrali ste predmet: </h2>
+  <div class = "students">
+    <span class="badge">{{subject.id}}</span>{{subject.name}}
+    <button class="delete" (click)="deleteSubject(subject)">Obriši predmet</button>
+  </div>
+  <div>
+    <label>Naziv:
+      <input [(ngModel)] = "subject.name" >
+    </label>
+  </div>
+  <div>
+    <label>Nedeljni fond časova:
+      <input [(ngModel)] = "subject.weeklyHours" >
+    </label>
+  </div>
+  <div >
+    <button (click)="save()" class="btn btn-primary">Sačuvaj</button>
+  </div>
+
+<div>
+  <a routerLink="/admin/subject/{{subject.id}}/year">
+  <button>Dodeli razred predmetu</button>
+  </a>
+</div>
+
+
+<div>
+  <a routerLink="/admin/subject/{{subject.id}}/class/teacher">
+  <button>Dodeli odeljenje i nastavnika predmetu</button>
+  </a>
+</div>
+</div>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

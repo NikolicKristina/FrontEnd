@@ -1,0 +1,25 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div>
+  <h4>Odaberite razred za dodelu predmetu</h4>
+  <div>
+    <ul class="subjects">
+      <li *ngFor="let year of years">
+
+          <span class="badge">{{year.id}}</span> {{year.year}}
+
+        <button class="delete" (click)="addYearToSubject(year)">Dodeli</button>
+      </li>
+    </ul>
+  </div>
+  </div>
+
+  <div>
+    <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+  </div>

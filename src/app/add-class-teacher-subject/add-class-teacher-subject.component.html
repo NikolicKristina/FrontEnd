@@ -1,0 +1,24 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div id="search-component">
+  <h4>Odaberite odeljenje za dodelu</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="odeljenje" />
+    <ul class="students">
+      <li *ngFor="let schoolClass of classes$ | async">
+        <a routerLink="/admin/subject/{{subjectId}}/{{schoolClass.id}}/class/teacher">
+          <span class="badge">{{schoolClass.id}}</span> {{schoolClass.classSign}}
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+  </div>

@@ -1,0 +1,56 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="teacher">
+  <h2>Odabrali ste nastavnika: </h2>
+  <div class = "students">
+    <span class="badge">{{teacher.id}}</span>{{teacher.firstName}} {{teacher.lastName}}
+    <button class="delete" (click)="deleteTeacher(teacher)">Obriši nastavnika</button>
+  </div>
+  <div>
+    <label>Ime:
+      <input [(ngModel)] = "teacher.firstName" >
+    </label>
+  </div>
+  <div>
+    <label>Prezime:
+      <input [(ngModel)] = "teacher.lastName" >
+    </label>
+  </div>
+  <div>
+    <label>email:
+      <input [(ngModel)] = "teacher.email" type="email">
+    </label>
+  </div>
+  <div>
+    <label>JMBG:
+      <input [(ngModel)] = "teacher.jmbg" >
+    </label>
+  </div>
+  <div>
+    <label>Adresa:
+      <input [(ngModel)] = "teacher.address" >
+    </label>
+  </div>
+  <div>
+    <label>Tip korisnika:
+      <input [(ngModel)] = "teacher.title" >
+    </label>
+  </div>
+  <div>
+    <label>Datum rodjenja:
+      <input [(ngModel)] = "teacher.dateOfBirth" >
+    </label>
+  </div>
+  <div >
+    <button (click)="save()" class="btn btn-primary">Sačuvaj</button>
+  </div>
+</div>
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

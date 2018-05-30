@@ -1,0 +1,45 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div>
+  <h4>Odaberite razred za izmenu</h4>
+  <div>
+    <ul class="subjects">
+      <li *ngFor="let year of years">
+        <a routerLink="/admin/year/{{year.id}}">
+          <span class="badge">{{year.id}}</span> {{year.year}}
+        </a>
+        <button class="delete"
+        (click)="deleteYear(year)">x</button>
+      </li>
+    </ul>
+  </div>
+  </div>
+<div>
+  <h4>Dodajte novi razred</h4>
+  <div>
+    <form [formGroup]="angForm" novalidate>
+      <div>
+        <label>Razred:</label>
+        <input class="form-control" formControlName="yearYear" #yearYear />
+      </div>
+      <div *ngIf="angForm.controls['yearYear'].invalid && (angForm.controls['yearYear'].dirty || angForm.controls['yearYear'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['yearYear'].errors.required" class="error">
+          Obavezno polje.
+        </div>
+      </div>
+        <div >
+          <button (click)="addYear(yearYear.value); yearYear.value=''" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Dodaj</button>
+        </div>
+    </form>
+  </div>
+  </div><br/><br/>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

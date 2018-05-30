@@ -1,0 +1,14 @@
+<div>
+  <h4>Spisak učenika</h4>
+  <ul class="subjects">
+    <li *ngFor="let student of students">
+    <a routerLink="/teacher/{{teacherId}}/{{classId}}/{{subjectId}}/{{student.id}}">
+      <span class="badge">{{student.id}}</span> {{student.firstName}} {{student.lastName}}
+    </a>
+    </li>
+  </ul>
+</div><br/><br/>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

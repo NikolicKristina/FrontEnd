@@ -1,0 +1,71 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div id="search-component">
+  <h4>Pronađi predmet</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="naziv predmeta" />
+
+  <ul class="search-result">
+    <li *ngFor="let subject of subjects$ | async" >
+      <a routerLink="/admin/subject/{{subject.id}}">
+        {{subject.id}} {{subject.name}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div>
+  <h4>Dodaj novi predmet</h4>
+
+    <div>
+      <form [formGroup]="angForm" novalidate>
+        <div>
+          <label>Naziv predmeta:</label>
+          <input class="form-control" formControlName="subjectName" #subjectName />
+        </div>
+        <div *ngIf="angForm.controls['subjectName'].invalid && (angForm.controls['subjectName'].dirty || angForm.controls['subjectName'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['subjectName'].errors.required" class="error">
+            Obavezno polje.
+          </div>
+        </div>
+        <div >
+          <label >Nedeljni fond časova:</label>
+          <input class="form-control" formControlName="subjectWeeklyHours" #subjectWeeklyHours/>
+        </div>
+        <div *ngIf="angForm.controls['subjectWeeklyHours'].invalid && (angForm.controls['subjectWeeklyHours'].dirty || angForm.controls['subjectWeeklyHours'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['subjectWeeklyHours'].errors.required" class="error">
+              Obavezno polje.
+          </div>
+        </div>
+          <div >
+            <button (click)="addSubject(subjectName.value, subjectWeeklyHours.value); subjectName.value=''; subjectWeeklyHours.value=''" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Dodaj</button>
+          </div>
+      </form>
+    </div>
+  </div>
+    <!--<label>Naziv predmeta:
+      <input #subjectName />
+    </label>
+  </div>
+  <div>
+    <label>Nedeljni fond časova:
+      <input #subjectWeeklyHours />
+    </label>
+  </div>
+  <div>-->
+  <!-- (click) passes input value to add() and then clears the input -->
+    <!--<button (click)="addSubject(subjectName.value, subjectWeeklyHours.value); subjectName.value='';
+  subjectWeeklyHours.value=''">
+      Dodaj
+    </button>
+  </div>
+</div><br/><br/>-->
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

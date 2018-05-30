@@ -1,0 +1,20 @@
+table#t01 {
+    width: 50%;
+    background-color: #DDD;
+}
+table#t01 tr:nth-child(even) {
+    background-color: #eee;
+    text-align: center;
+}
+table#t01 tr:nth-child(odd) {
+    background-color: #fff;
+    text-align: center;
+}
+table#t01 th {
+    color: white;
+    background-color: #607D8B;
+    text-align: center;
+}
+button:hover {
+  background-color: #cfd8dc;
+}

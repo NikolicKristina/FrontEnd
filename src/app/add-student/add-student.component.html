@@ -1,0 +1,19 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="student">
+  <h2>Odabrali ste učenika: </h2>
+  <div class = "students">
+    <span class="badge">{{student.id}}</span>{{student.firstName}} {{student.lastName}}
+    <button class="delete" (click)="addStudentToParent(student)">Dodeli roditelju</button>
+  </div>
+  <div>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

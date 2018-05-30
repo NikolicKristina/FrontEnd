@@ -1,0 +1,20 @@
+<div *ngIf="grade">
+  <div><span>id: </span>{{grade.id}}</div>
+  <div>
+    <label>Ocena:
+      <input [(ngModel)]="grade.value" placeholder="ocena"/>
+    </label>
+  </div>
+  <div>
+    <label>Tip ocene:
+      <input [(ngModel)]="grade.type" placeholder="tip"/>
+    </label>
+  </div>
+  <div>
+    <label>Polugodište:
+      <input [(ngModel)]="grade.semester" placeholder="polugodište"/>
+    </label>
+  </div>
+  <button (click)="goBack()">Nazad</button>
+  <button (click)="save(); getGradeFinSem1(); getFinalGrade()">Sačuvaj</button>
+</div>

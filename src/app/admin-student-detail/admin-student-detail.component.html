@@ -1,0 +1,70 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="student">
+  <h2>Odabrali ste učenika: </h2>
+  <div class = "students">
+    <span class="badge">{{student.id}}</span>{{student.firstName}} {{student.lastName}}
+    <button class="delete" (click)="deleteStudent(student)">Obriši učenika</button>
+  </div>
+  <div>
+    <label>Ime:
+      <input [(ngModel)] = "student.firstName" >
+    </label>
+  </div>
+  <div>
+    <label>Prezime:
+      <input [(ngModel)] = "student.lastName" >
+    </label>
+  </div>
+  <div>
+    <label>email:
+      <input [(ngModel)] = "student.email" type="email">
+    </label>
+  </div>
+  <div>
+    <label>JMBG:
+      <input [(ngModel)] = "student.jmbg" >
+    </label>
+  </div>
+  <div>
+    <label>Adresa:
+      <input [(ngModel)] = "student.address" >
+    </label>
+  </div>
+  <div>
+    <label>Tip korisnika:
+      <input [(ngModel)] = "student.title" >
+    </label>
+  </div>
+  <div>
+    <label>Datum rodjenja:
+      <input [(ngModel)] = "student.dateOfBirth" >
+    </label>
+  </div>
+  <div >
+    <button (click)="save()" class="btn btn-primary">Sačuvaj</button>
+  </div>
+</div>
+<div id="search-component">
+  <h4>Pronađi odeljenje za dodelu učeniku</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="odeljenje" />
+
+  <ul class="search-result">
+    <li *ngFor="let schoolClass of classes$ | async" >
+      <a routerLink="/admin/student/{{studentId}}/{{schoolClass.id}}">
+        {{schoolClass.id}} {{schoolClass.classSign}}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

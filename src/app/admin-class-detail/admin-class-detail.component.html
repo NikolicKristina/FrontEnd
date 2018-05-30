@@ -1,0 +1,38 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div *ngIf="schoolClass">
+  <h2>Odabrali ste odeljenje: </h2>
+  <div class = "students">
+    <span class="badge">{{schoolClass.id}}</span>{{schoolClass.classSign}}
+    <button class="delete" (click)="deleteClass(schoolClass)">Obriši odeljenje</button>
+  </div>
+  <div>
+    <label>Odeljenje:
+      <input [(ngModel)] = "schoolClass.classSign" >
+    </label>
+  </div>
+  <div >
+    <button (click)="save()" class="btn btn-primary">Sačuvaj</button>
+  </div>
+</div>
+<div>
+  <button class="delete" (click)="getYears()">Odaberite razred za dodelu odeljenju</button>
+  <div>
+    <ul class="students">
+      <li *ngFor="let year of years">
+        <span class="badge">{{year.id}}</span> {{year.year}}
+        <button class="delete"
+        (click)="addYearToClass(year)">Dodeli</button>
+      </li>
+    </ul>
+  </div>
+  </div>
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

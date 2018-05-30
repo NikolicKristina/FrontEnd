@@ -1,0 +1,71 @@
+<div>
+<table id="t01">
+  <caption>Pregled ocena</caption>
+<tr>
+  <th>ID</th>
+   <th>Ocena</th>
+   <th>Tip ocene</th>
+   <th>Polugodište</th>
+   <th colspan=2></th>
+
+ </tr>
+ <tr *ngFor="let grade of grades">
+   <td>{{grade.id}}</td>
+   <td>{{grade.value}}</td>
+   <td>{{grade.type}}</td>
+   <td>{{grade.semester}}</td>
+   <td><a routerLink = "/grade/{{teacherId}}/{{subjectId}}/{{classId}}/{{studentId}}/{{grade.id}}" class="btn btn-primary">Izmeni</a></td>
+  <td><button (click)="deleteGrade(grade); getGradeFinSem1(); getFinalGrade()"  class="delete">Obriši</button></td>
+ </tr>
+</table>
+</div><br/><br/>
+
+<div>
+  <label>Ocena:
+    <!--<input #gradeValue/>-->
+    <select name="gradeValue" #gradeValue>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </label>
+  <label>Tip ocene:
+    <select name="typeValue" #gradeType>
+      <option value="KONTROLNI">Kontrolni</option>
+      <option value="USMENI">Usmeni</option>
+      <option value="PISMENI">Pismeni</option>
+      <option value="ZAKLJUČNA">Zaključna</option>
+    </select>
+  </label>
+  <label>Polugodište:
+    <select name="semesterValue" #gradeSemester>
+      <option value="1">Prvo</option>
+      <option value="2">Drugo</option>
+      </select>
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="addGrade(gradeValue.value, gradeType.value, gradeSemester.value);
+  getGradeFinSem1(); getFinalGrade()">
+    Oceni
+  </button>
+</div><br/><br/>
+
+<div>
+  <button class="btn btn-primary" (click)="getGradeFinSem1()">
+    Izračunaj
+  </button>
+  <div><span>Prosek ocena 1.polugodišta: </span>{{finGradeSem1 | number : '1.2-2'}}</div>
+</div><br/><br/>
+
+<div>
+  <button class="btn btn-primary" (click)="getFinalGrade()">
+    Izračunaj
+  </button>
+  <div><span>Prosek ocena 2.polugodišta: </span>{{finalGrade |  number : '1.2-2'}}</div>
+</div><br/><br/>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div><br/><br/>

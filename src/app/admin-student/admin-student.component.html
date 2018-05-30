@@ -1,0 +1,101 @@
+<nav>
+  <a routerLink='/admin/parents'>Roditelji</a>
+  <a routerLink='/admin/students'>Učenici</a>
+  <a routerLink='/admin/teachers'>Nastavnici</a>
+  <a routerLink='/admin/subjects'>Predmeti</a>
+  <a routerLink='/admin/years'>Razredi</a>
+  <a routerLink='/admin/class'>Odeljenja</a>
+</nav>
+<div id="search-component">
+  <h4>Pronađi učenika</h4>
+
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" placeholder="JMBG učenika" />
+
+  <ul class="search-result">
+    <li *ngFor="let student of students$ | async" >
+      <a routerLink="/admin/student/{{student.id}}">
+        {{student.id}} {{student.firstName}} {{student.lastName}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div>
+  <h4>Dodaj novog učenika</h4>
+  <div>
+    <form [formGroup]="angForm" novalidate>
+      <div>
+        <label>Ime:</label>
+        <input class="form-control" formControlName="studentFirstName" #studentFirstName />
+      </div>
+      <div *ngIf="angForm.controls['studentFirstName'].invalid && (angForm.controls['studentFirstName'].dirty || angForm.controls['studentFirstName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentFirstName'].errors.required" class="error">
+          Obavezno polje.
+        </div>
+      </div>
+      <div >
+        <label >Prezime:</label>
+        <input class="form-control" formControlName="studentLastName" #studentLastName/>
+      </div>
+      <div *ngIf="angForm.controls['studentLastName'].invalid && (angForm.controls['studentLastName'].dirty || angForm.controls['studentLastName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentLastName'].errors.required" class="error">
+            Obavezno polje.
+        </div>
+      </div>
+      <div >
+        <label >email:</label>
+        <input class="form-control" formControlName="studentEmail" #studentEmail/>
+      </div>
+      <div *ngIf="angForm.controls['studentEmail'].invalid && (angForm.controls['studentEmail'].dirty || angForm.controls['studentEmail'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentEmail'].errors.required" class="error">
+            Obavezno polje.
+        </div>
+      </div>
+      <div >
+        <label >JMBG:</label>
+        <input class="form-control" formControlName="studentJmbg" #studentJmbg/>
+      </div>
+      <div *ngIf="angForm.controls['studentJmbg'].invalid && (angForm.controls['studentJmbg'].dirty || angForm.controls['studentJmbg'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentJmbg'].errors.required" class="error">
+            Obavezno polje.
+        </div>
+      </div>
+      <div >
+        <label >Adresa:</label>
+        <input class="form-control" formControlName="studentAddress" #studentAddress/>
+      </div>
+      <div *ngIf="angForm.controls['studentAddress'].invalid && (angForm.controls['studentAddress'].dirty || angForm.controls['studentAddress'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentAddress'].errors.required" class="error">
+            Obavezno polje.
+        </div>
+      </div>
+      <div >
+        <label >Tip korisnika:
+          <select name="studentTitle" #studentTitle>
+            <option value="ADMINISTRATOR">Administrator</option>
+            <option value="RODITELJ">Roditelj</option>
+            <option value="UČENIK" selected>Učenik</option>
+            <option value="NASTAVNIK" >Nastavnik</option>
+          </select>
+        </label>
+      </div>
+      <div >
+        <label >Datum rođenja:</label>
+        <input class="form-control" formControlName="studentDateOfBirth" #studentDateOfBirth/>
+      </div>
+      <div *ngIf="angForm.controls['studentDateOfBirth'].invalid && (angForm.controls['studentDateOfBirth'].dirty || angForm.controls['studentDateOfBirth'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['studentDateOfBirth'].errors.required" class="error">
+            Obavezno polje.
+        </div>
+      </div>
+  <div >
+  <!-- (click) passes input value to add() and then clears the input -->
+    <button (click)="addStudent(studentFirstName.value, studentLastName.value, studentEmail.value,
+  studentJmbg.value, studentAddress.value, studentTitle.value, studentDateOfBirth.value); studentFirstName.value='';
+  studentLastName.value=''; studentEmail.value=''; studentJmbg.value=''; studentAddress.value=''; studentDateOfBirth.value=''" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">
+      Dodaj
+    </button>
+</div>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>

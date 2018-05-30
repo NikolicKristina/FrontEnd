@@ -1,0 +1,25 @@
+<div>
+  <h4>Spisak odeljenja</h4>
+  <ul class="subjects">
+    <li *ngFor="let schoolClass of schoolClasses"
+    [class.selected]="schoolClass === selectedSchoolClass"
+    (click)="onSelect(schoolClass)"
+    (click)="getSubjectsForClassAndTeacher()">
+      <span class="badge">{{schoolClass.id}}</span> {{schoolClass.classSign}}
+    </li>
+  </ul>
+</div>
+<div *ngIf="selectedSchoolClass">
+  <h4>Spisak predmeta</h4>
+  <ul class="subjects">
+    <li *ngFor="let subject of subjects">
+      <a routerLink="/teacher/{{teacherId}}/{{selectedSchoolClass.id}}/{{subject.id}}">
+      <span class="badge">{{subject.id}}</span> {{subject.name}}
+    </a>
+    </li>
+  </ul>
+</div><br/>
+
+<div>
+  <button (click)="goBack()" class="btn btn-primary">Nazad</button>
+</div>
